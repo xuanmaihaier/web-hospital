@@ -1,0 +1,10 @@
+@import "./variables.scss";
+
+body {
+  // height: $contentHeight;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "微软雅黑", Tahoma, Helvetica, Arial, "Microsoft YaHei", 宋体,
+    sans-serif;
+}
