@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <el-carousel :height="height" :interval="5000" arrow="always">
-    <el-carousel-item v-for="item in imgs" :key="item">
-      <div class="items" ref="imgItems">
-        <img :src="item" alt="">
-      </div>
-    </el-carousel-item>
+      <el-carousel-item v-for="item in imgs" :key="item">
+        <div ref="imgItems" class="items">
+          <img :src="item" alt="">
+        </div>
+      </el-carousel-item>
     </el-carousel>
     <main class="content">
       模块待开发
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       height: '360px',
-      imgs:[
+      imgs: [
         require('../../assets/image/img_banner1.jpg'),
         require('../../assets/image/img_banner2.jpg')
       ]
@@ -27,20 +27,20 @@ export default {
   },
   mounted() {
     window.addEventListener('resize', this.resize)
-    this.$nextTick(()=>{
+    this.$nextTick(() => {
       setTimeout(() => {
         this.height = this.$refs.imgItems[0].offsetHeight + 'px'
-      }, 0);
+      }, 100)
     })
   },
-  beforeDestroy(){
+  beforeDestroy() {
     window.removeEventListener('resize', this.resize)
   },
   methods: {
-    resize(){
+    resize() {
       this.height = this.$refs.imgItems[0].offsetHeight + 'px'
     }
-  },
+  }
 }
 </script>
 

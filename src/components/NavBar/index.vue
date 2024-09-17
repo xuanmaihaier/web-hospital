@@ -5,18 +5,18 @@
         <img class="logo" src="@/assets/image/logo.svg" alt="">
       </div>
       <div class="head-search">
-        <el-input placeholder="请输入内容" v-model="name">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input v-model="name" placeholder="请输入内容">
+          <el-button slot="append" icon="el-icon-search" />
         </el-input>
       </div>
       <div class="phone-meun" @click="showList">
-        <i v-if="!open" class="iconfont icon-list"></i>
-        <i v-else class="iconfont icon-close"></i>
+        <i v-if="!open" class="iconfont icon-list" />
+        <i v-else class="iconfont icon-close" />
       </div>
     </div>
     <div class="content">
-      <el-radio-group ref="list" class="list" @input="goLink" v-model="url">
-        <el-radio-button v-for="item in list" :label="item.link">{{ item.name }}</el-radio-button>
+      <el-radio-group ref="list" v-model="url" class="list" @input="goLink">
+        <el-radio-button v-for="(item,index) in list" :key="index" :label="item.link">{{ item.name }}</el-radio-button>
       </el-radio-group>
     </div>
   </nav>
@@ -36,14 +36,14 @@ export default {
         { name: '专家介绍', link: 'experts' },
         { name: '教学科研', link: 'teaching' },
         { name: '人才招聘', link: 'recruitment' },
-        { name: 'OA办公', link: 'oa' },
+        { name: 'OA办公', link: 'oa' }
       ],
       type: Array
     }
   },
-  data () {
+  data() {
     return {
-      name: "",
+      name: '',
       open: false,
       url: 'home'
     }
@@ -51,26 +51,26 @@ export default {
   mounted() {
     window.addEventListener('resize', this.resize)
   },
-  beforeDestroy(){
+  beforeDestroy() {
     window.removeEventListener('resize', this.resize)
   },
   methods: {
-    goLink (url) {
-      console.log(url);
+    goLink(url) {
+      console.log(url)
     },
-    showList(){
-      this.open = !this.open;
-      if(this.open){
+    showList() {
+      this.open = !this.open
+      if (this.open) {
         this.$refs.list.$el.style.display = 'block'
-      }else{
+      } else {
         this.$refs.list.$el.style.display = 'none'
       }
     },
-    resize(){
-      if(window.innerWidth > 768){
+    resize() {
+      if (window.innerWidth > 768) {
         this.$refs.list.$el.style.display = 'block'
         this.open = false
-      } else{
+      } else {
         this.$refs.list.$el.style.display = 'none'
       }
     }
