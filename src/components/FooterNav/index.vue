@@ -19,7 +19,7 @@
       </el-row>
     </div>
     <!-- 底部信息 -->
-    <div class="footerMsg">
+    <div class="footerMsg chating">
       <el-row style="width: 1080px; margin: 0 auto">
         <el-col :span="6" class="footMsg_left">
           <img
@@ -197,12 +197,11 @@ $mainColor: #007399;
   justify-content: center;
   align-items: center;
   .content {
-    width: 100%;
     display: flex;
     padding-bottom: 12px;
     // justify-content: space-between;
     label {
-      width: 90px;
+      min-width: 90px;
       align-self: start;
     }
     > div {
@@ -210,6 +209,7 @@ $mainColor: #007399;
       flex-direction: column;
       span {
         padding-bottom: 12px;
+        min-width: 200px;
       }
     }
   }
@@ -218,8 +218,10 @@ $mainColor: #007399;
 }
 .footMsg_right {
   padding-left: 30px;
+  padding-right: 30px;
   padding-top: 18px;
   display: flex;
+  justify-content: center;
   font-size: 14px;
   .chat {
     display: flex;
@@ -235,6 +237,9 @@ $mainColor: #007399;
       align-items: center;
       justify-content: center;
       margin-bottom: 6px;
+    }
+    &:last-child{
+        margin-right: 0;
     }
   }
 }
@@ -261,5 +266,41 @@ $mainColor: #007399;
 }
 .address{
   padding-top: 18px;
+}
+@media screen and (max-width: 1098px){
+  .footer{
+    padding-top:0 
+  }
+  .footerNav{
+    display: none;
+  }
+  .chating{
+    margin-top: 0;
+  }
+  .footerMsg{
+    >div{
+      width: 100%!important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footMsg_left ,.footMsg_right{
+      width: 100%!important;
+    }
+    .footMsg_left::after {
+      display: none;
+    }
+    .chat{
+      margin-right: 10px;
+      >div{
+        width: 100px;
+        height: 100px;
+        >img{
+          width: 90px;
+          height: 90px;
+        }
+      }
+    }
+  }
 }
 </style>

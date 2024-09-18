@@ -30,7 +30,7 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         this.height = this.$refs.imgItems[0].offsetHeight + 'px'
-      }, 100)
+      }, 350)
     })
   },
   beforeDestroy() {

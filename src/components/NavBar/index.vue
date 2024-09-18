@@ -155,8 +155,19 @@ $mainColor: #007399;
   }
 }
 @media screen and (max-width: 768px) {
+  nav{
+    position: sticky;
+    right: 0;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 1);
+    z-index: 999;
+  }
   .nav {
     height: 80px;
+  }
+  .content{
+    height: 100%;
   }
   .banner {
     width: 246px;

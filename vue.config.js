@@ -9,7 +9,7 @@ function resolve(dir) {
 const name = defaultSettings.title
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 // cli生成的项目会自动带截取掉'web-'前缀的环境变量
-const publicPath = process.env.VUE_APP_BASE_NAME ? `/${process.env.VUE_APP_BASE_NAME}/` : '/'
+const publicPath = '/'
 module.exports = {
   publicPath: publicPath,
   outputDir: process.env.VUE_APP_BASE_NAME,
