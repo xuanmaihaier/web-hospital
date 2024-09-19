@@ -1,15 +1,25 @@
 <template>
-  <div class="box">
-    <div class="header">
-      <div class="title">
+  <div :class="`box ${type}`">
+    <div :class="`header ${type}`">
+      <div class="title" :title="title">
         {{ title }}
       </div>
-      <div class="more" @click="toLink">更多>></div>
+      <div v-if="showMore" class="more" @click="toLink">更多>></div>
     </div>
-    <ul class="contents">
-      <li class="contents-item" v-for="(item,index) in list" :key="index">
-        <span class="contents-item-text">{{item.content}}</span>
-        <span>{{item.date}}</span>
+    <ul :class="`contents ${type}`">
+      <li v-if="type=='default'" class="contents-item default" v-for="(item,index) in list" :key="index">
+        <span class="contents-item-text" :title="item.content">{{item.content}}</span>
+        <span v-if="item.date" class="date">{{item.date}}</span>
+      </li>
+      <li v-if="type=='column'" class="contents-item column" v-for="(item,index) in list" :key="index">
+        <span :style="{backgroundImage:'url('+item.image+')'}" class="contents-item-text" :title="item.content">{{item.content}}</span>
+      </li>
+      <li v-if="type=='list'" class="contents-item list" v-for="(item,index) in list" :key="index">
+        <!-- <img src="" alt=""> -->
+        <span class="contents-item-text" :title="item.content">{{item.content}}</span>
+      </li>
+      <li v-if="type=='mini'" class="contents-item mini" v-for="(item,index) in list" :key="index">
+        <a class="contents-item-text" target="_blank" :href="item.link" :title="item.content">{{item.content}}</a>
       </li>
     </ul>
   </div>
@@ -32,6 +42,15 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: String,
+      default: "default"
+    },
+    showMore: {
+      type: Boolean,
+      default: true
+
     }
   },
   methods: {
@@ -43,10 +62,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mainColor: #007399;
 .box {
   display: inline-block;
+  width: 100%;
   height: 319px;
   background: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(238, 238, 238, 1);
+  font-size: 14px;
+  &.list,&.mini {
+    height: 100%;
+  }
   .header {
     height: 54px;
     display: flex;
@@ -67,6 +93,9 @@ export default {
       font-size: 14px;
       font-weight: 400;
     }
+    &.column,&.mini,&.list {
+      border-bottom: 2px dashed #eeeeee;
+    }
   }
   .contents {
     display: flex;
@@ -74,6 +103,13 @@ export default {
     padding: 0;
     margin: 0;
     min-width: 300px;
+    &.list,&.mini {
+      justify-content: unset;
+      align-content: unset;
+      flex-direction: unset;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
     &-item {
       display: flex;
       border-top: 2px dashed #eeeeee;
@@ -82,6 +118,8 @@ export default {
       position: relative;
       padding-right: 15px;
       padding-left: 6px;
+      justify-content: space-between;
+      cursor: pointer;
       &-text {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -90,6 +128,12 @@ export default {
         width: 200px;
         padding-left: 15px;
         text-align: left;
+        &:hover {
+          color: #005976;
+        }
+      }
+      .date {
+        color: #999;
       }
       &::before {
         content: "";
@@ -101,6 +145,55 @@ export default {
         top: 50%;
         transform: translateY(-50%);
         left: 6px;
+      }
+      &.column,
+      &.list,
+      &.mini {
+        border-top: none;
+        height: 65px;
+        line-height: 65px;
+        align-items: center;
+        margin-top: 15px;
+        color: #fff;
+        font-size: 16px;
+        .contents-item-text {
+          width: 100%;
+          text-align: center;
+          background-size: cover;
+          &:hover {
+            color: unset;
+          }
+        }
+        &::before {
+          display: none;
+        }
+      }
+      &.list {
+        width: calc((100% / 5) - 50px);
+        margin: 0;
+        height: 200px;
+        color: #666;
+        &:nth-child(2n) {
+          background: rgba(249, 249, 249, 1);
+        }
+        &:hover {
+          background: $mainColor;
+          color: #fff;
+        }
+      }
+      &.mini {
+        font-size: 14px;
+        height: 28px;
+        line-height: 28px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        a{
+          text-decoration: none;
+          color: #000;
+        }
+        &:hover {
+          color: #005976;
+        }
       }
     }
   }

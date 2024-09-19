@@ -6,7 +6,7 @@
       </div>
       <div class="head-search">
         <el-input v-model="name" placeholder="请输入内容">
-          <el-button slot="append" icon="el-icon-search" />
+          <el-button slot="append" icon="el-icon-search" @click="search" />
         </el-input>
       </div>
       <div class="phone-meun" @click="showList">
@@ -73,7 +73,10 @@ export default {
       } else {
         this.$refs.list.$el.style.display = 'none'
       }
-    }
+    },
+    search(){
+      this.$route.push('/search')
+    },
   }
 }
 </script>
