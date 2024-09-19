@@ -26,6 +26,14 @@ export const constantRoutes = [
     },
   },
   {
+    path: "/jobs",
+    component: () => import("@/views/jobs/index.vue"),
+    meta: {
+      title: "人才招聘",
+      name: "jobs",
+    },
+  },
+  {
     path:'/overview',
     redirect:'/overview/introduction',
     component: () => import("@/views/overview/main.vue"),
@@ -62,6 +70,10 @@ export const constantRoutes = [
     path: "/404",
     hidden: true,
     component: () => import("@/views/error-page/404"),
+    meta: {
+      title: "404",
+      name: "404",
+    },
   },
   { path: "*", redirect: "/404", hidden: true },
 ];

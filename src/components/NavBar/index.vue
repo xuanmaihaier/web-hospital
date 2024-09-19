@@ -35,7 +35,7 @@ export default {
         { name: '科室介绍', link: 'depIntroduction' },
         { name: '专家介绍', link: 'experts' },
         { name: '教学科研', link: 'teaching' },
-        { name: '人才招聘', link: 'recruitment' },
+        { name: '人才招聘', link: '/jobs' },
         { name: 'OA办公', link: 'oa' }
       ],
       type: Array
@@ -46,13 +46,13 @@ export default {
       name: '',
       open: false,
       url: '/home',
+      width:''
     }
   },
   mounted () {
     window.addEventListener('resize', this.resize)
-    console.log(this.$route.meta);
     setTimeout(() => {
-      this.url = this.$route.matched[0].path
+      this.url = "/" + this.$route.matched[0].meta.name
     }, 0);
   },
   beforeDestroy () {
@@ -62,9 +62,11 @@ export default {
     goLink (url) {
       this.$router.push(url)
     },
-    show(){
-      // this.$refs.list.$el.style.display = 'none'
-      // this.open = false
+    show () {
+      if (this.width && this.width <= 768) {
+        this.$refs.list.$el.style.display = 'none'
+        this.open = false
+      }
     },
     showList () {
       this.open = !this.open
@@ -75,6 +77,7 @@ export default {
       }
     },
     resize () {
+      this.width = window.innerWidth
       if (window.innerWidth > 768) {
         this.$refs.list.$el.style.display = 'flex'
         this.open = false
