@@ -8,3 +8,25 @@ body {
   font-family: "微软雅黑", Tahoma, Helvetica, Arial, "Microsoft YaHei", 宋体,
     sans-serif;
 }
+
+main {
+  min-height: auto;
+  margin: 0 auto 50px auto;
+}
+@media screen and (min-width: 768px) {
+  main {
+    width: 750px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    width: 970px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main {
+    width: 1180px;
+  }
+}

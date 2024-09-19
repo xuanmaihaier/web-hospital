@@ -7,7 +7,7 @@
         </div>
       </el-carousel-item>
     </el-carousel>
-    <main class="content">
+    <div class="content">
       <el-row class="rows">
         <el-col :span="8">
           <el-carousel height="319px" class="rows-carousel" :interval="5000" arrow="always">
@@ -44,7 +44,7 @@
           <Box title='友情链接' :list="LinkList" type="mini" :showMore="false"></Box>
         </el-col>
       </el-row>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -241,6 +241,8 @@ export default {
     margin-top: 40px;
     .rows {
       width: 100%;
+      display: flex;
+      flex-wrap: wrap;
       > div {
         padding: 7.5px;
       }
@@ -284,6 +286,17 @@ export default {
 @media screen and (min-width: 1200px) {
   .content {
     width: 1180px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .rows {
+    flex-direction: column;
+    >div{
+      width: 100%;
+    }
+  }
+  .home .content{
+    margin-top: 2px;
   }
 }
 </style>

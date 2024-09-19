@@ -4,7 +4,7 @@
       <div class="banner">
         <img class="logo" src="@/assets/image/logo.svg" alt="">
       </div>
-      <div class="head-search">
+      <div v-if="$route.meta.name !== 'search'" class="head-search">
         <el-input v-model="name" placeholder="请输入内容">
           <el-button slot="append" icon="el-icon-search" @click="search" />
         </el-input>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="content">
-      <el-radio-group ref="list" v-model="url" class="list" @input="goLink">
+      <el-radio-group ref="list" v-model="url" class="list" @click.native="show" @input="goLink">
         <el-radio-button v-for="(item,index) in list" :key="index" :label="item.link">{{ item.name }}</el-radio-button>
       </el-radio-group>
     </div>
@@ -27,8 +27,8 @@ export default {
   props: {
     list: {
       default: () => [
-        { name: '首页', link: 'home' },
-        { name: '医院概括', link: 'summarize' },
+        { name: '首页', link: '/home' },
+        { name: '医院概括', link: '/overview' },
         { name: '医院动态', link: 'trends' },
         { name: '党建文化', link: 'culture' },
         { name: '院务公开', link: 'publicity' },
@@ -41,41 +41,49 @@ export default {
       type: Array
     }
   },
-  data() {
+  data () {
     return {
       name: '',
       open: false,
-      url: 'home'
+      url: '/home',
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('resize', this.resize)
+    console.log(this.$route.meta);
+    setTimeout(() => {
+      this.url = this.$route.matched[0].path
+    }, 0);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.resize)
   },
   methods: {
-    goLink(url) {
-      console.log(url)
+    goLink (url) {
+      this.$router.push(url)
     },
-    showList() {
+    show(){
+      // this.$refs.list.$el.style.display = 'none'
+      // this.open = false
+    },
+    showList () {
       this.open = !this.open
       if (this.open) {
-        this.$refs.list.$el.style.display = 'block'
+        this.$refs.list.$el.style.display = 'flex'
       } else {
         this.$refs.list.$el.style.display = 'none'
       }
     },
-    resize() {
+    resize () {
       if (window.innerWidth > 768) {
-        this.$refs.list.$el.style.display = 'block'
+        this.$refs.list.$el.style.display = 'flex'
         this.open = false
       } else {
         this.$refs.list.$el.style.display = 'none'
       }
     },
-    search(){
-      this.$route.push('/search')
+    search () {
+      this.$router.push(`/search/${this.name ? this.name : ' '}`)
     },
   }
 }
@@ -95,7 +103,7 @@ $mainColor: #007399;
   justify-content: flex-start;
   width: 520px;
   height: 123px;
-  margin-left: 18px;
+  // margin-left: 18px;
   .logo {
     width: 100%;
     height: 100%;
@@ -121,16 +129,17 @@ $mainColor: #007399;
   color: $mainColor;
   margin-right: 20px;
 }
-.content{
+.content {
   background: $mainColor;
 }
-::v-deep .list{
+::v-deep .list {
   margin: 0 auto;
   height: 50px;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
-  .el-radio-button__inner{
+  .el-radio-button__inner {
     border: none;
     height: 50px;
     padding: 18px 28px;
@@ -138,27 +147,30 @@ $mainColor: #007399;
     color: #fff;
     font-size: 16px;
   }
-  .el-radio-button__orig-radio:checked+.el-radio-button__inner{
-    background: #328fAD;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .nav,.list {
-    width: 1180px !important;
-  }
-}
-@media screen and (min-width: 992px) {
-  .nav,.list {
-    width: 970px;
+  .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+    background: #328fad;
   }
 }
 @media screen and (min-width: 768px) {
-  .nav,.list {
+  .nav,
+  .list {
     width: 750px;
   }
 }
+@media screen and (min-width: 992px) {
+  .nav,
+  .list {
+    width: 970px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .nav,
+  .list {
+    width: 1180px !important;
+  }
+}
 @media screen and (max-width: 768px) {
-  nav{
+  nav {
     position: sticky;
     right: 0;
     left: 0;
@@ -169,12 +181,13 @@ $mainColor: #007399;
   .nav {
     height: 80px;
   }
-  .content{
+  .content {
     height: 100%;
   }
   .banner {
     width: 246px;
     height: 70px;
+    margin-left: 18px;
   }
   .banner .logo {
     width: 246px;
@@ -192,16 +205,17 @@ $mainColor: #007399;
   .phone-meun {
     display: block;
   }
-  ::v-deep .list{
+  ::v-deep .list {
     display: flex;
     flex-direction: column;
     display: none;
     z-index: 999;
     position: absolute;
     height: 100%;
-    .el-radio-button__inner,.el-radio-button {
+    .el-radio-button__inner,
+    .el-radio-button {
       width: 100%;
-   }
+    }
   }
 }
 /* è®¾ç½®æœç´¢æ¡†çš„é€‚é… */
@@ -212,12 +226,12 @@ $mainColor: #007399;
     justify-content: flex-start;
     width: 380px;
     height: 89px;
-    margin-left: 26px;
+    // margin-left: 26px;
   }
-  ::v-deep .list{
-    .el-radio-button__inner{
+  ::v-deep .list {
+    .el-radio-button__inner {
       padding: 18px 7px;
-   }
+    }
   }
 }
 </style>

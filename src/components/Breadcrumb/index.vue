@@ -1,11 +1,7 @@
 <template>
   <div class="sys-breadcrumb-warp">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item
-        v-for="pathObj in breadcrumbdatalistInit"
-        :key="pathObj.path"
-        :to="goTo(pathObj)"
-      >{{
+      <el-breadcrumb-item v-for="pathObj in breadcrumbdatalistInit" :key="pathObj.path" :to="goTo(pathObj)">{{
         pathObj.meta.title
       }}</el-breadcrumb-item>
     </el-breadcrumb>
@@ -17,7 +13,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'BreadcrumbComponent',
-  data() {
+  data () {
     return {
       breadcrumbdatalistInit: null
     }
@@ -27,34 +23,63 @@ export default {
       'breadcrumbdatalist'
     ])
   },
-  mounted() {
-    // 干预定制化 不需要一级菜单
-    this.breadcrumbdatalistInit = this.breadcrumbdatalist.slice(1, this.breadcrumbdatalist.length)
+  mounted () {
+    setTimeout(() => {
+      const data = {
+        path: '/home',
+        meta: {
+          title: '首页'
+        }
+      }
+      console.log(this.breadcrumbdatalist);
+      this.breadcrumbdatalistInit = [data, ...this.breadcrumbdatalist]
+    }, 0);
   },
   methods: {
-    // 详情菜单 无法通过面包屑点击 如详情无法通过点击面包屑重复进入
-    goTo(pathObj) {
-      if (pathObj.redirect == 'index') {
-        return { name: pathObj.name + '-index', params: this.$route.params }
-      } else {
-        return { name: pathObj.name, params: this.$route.params }
-      }
+    goTo (pathObj) {
+      return { path: pathObj.path, params: this.$route.params }
     }
-
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$mainColor: #007399;
 .sys-breadcrumb-warp {
-    background: #ffffff;
-    box-shadow: 0px 0px 8px 0px rgba(200, 212, 226, 0.5);
-    margin: 0px 10px;
-    padding: 0 10px;
-    // z-index: 1001;
+  background: #ffffff;
+  // box-shadow: 0px 0px 8px 0px rgba(200, 212, 226, 0.5);
+  padding: 20px;
+  margin: 0 auto;
+  // margin: 0px 10px;
+  // padding: 0 10px;
+  // z-index: 1001;
 
-    .el-breadcrumb {
-        line-height: 40px;
-    }
+  .el-breadcrumb {
+    line-height: 40px;
+  }
 }
+::v-deep .el-breadcrumb__inner.is-link{
+  color: $mainColor;
+}
+::v-deep .el-breadcrumb__item:last-child .el-breadcrumb__inner{
+  color: #626666;
+}
+@media screen and (min-width: 768px) {
+  .sys-breadcrumb-warp {
+    width: 750px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .sys-breadcrumb-warp {
+    width: 970px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .sys-breadcrumb-warp {
+    width: 1180px;
+  }
+}
+
 </style>

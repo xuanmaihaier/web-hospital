@@ -70,7 +70,9 @@ $mainColor: #007399;
   background: #fff;
   box-shadow: 0px 2px 8px 0px rgba(238, 238, 238, 1);
   font-size: 14px;
-  &.list,&.mini {
+  overflow: hidden;
+  &.list,
+  &.mini {
     height: 100%;
   }
   .header {
@@ -93,7 +95,9 @@ $mainColor: #007399;
       font-size: 14px;
       font-weight: 400;
     }
-    &.column,&.mini,&.list {
+    &.column,
+    &.mini,
+    &.list {
       border-bottom: 2px dashed #eeeeee;
     }
   }
@@ -102,8 +106,9 @@ $mainColor: #007399;
     flex-direction: column;
     padding: 0;
     margin: 0;
-    min-width: 300px;
-    &.list,&.mini {
+    // min-width: 300px;
+    &.list,
+    &.mini {
       justify-content: unset;
       align-content: unset;
       flex-direction: unset;
@@ -119,6 +124,7 @@ $mainColor: #007399;
       padding-right: 15px;
       padding-left: 6px;
       justify-content: space-between;
+      overflow: hidden;
       cursor: pointer;
       &-text {
         text-overflow: ellipsis;
@@ -187,7 +193,7 @@ $mainColor: #007399;
         line-height: 28px;
         margin-top: 0;
         margin-bottom: 12px;
-        a{
+        a {
           text-decoration: none;
           color: #000;
         }
@@ -195,6 +201,17 @@ $mainColor: #007399;
           color: #005976;
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .box .contents-item.list {
+    width: calc((100% / 2) - 24px);
+    &:nth-child(2n) {
+      background: #fff;
+    }
+    &:nth-child(4n + 2),&:nth-child(4n + 3) {
+      background: rgba(249, 249, 249, 1);
     }
   }
 }
