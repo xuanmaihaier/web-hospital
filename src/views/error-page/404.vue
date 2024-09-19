@@ -49,8 +49,13 @@ export default {
 }
 .wscn-http404 {
   position: relative;
-  width: 1200px;
-  padding: 0 50px;
+  width: 100%;
+  // padding: 0 50px;
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   overflow: hidden;
   .pic-404 {
     position: relative;
@@ -231,6 +236,11 @@ export default {
         opacity: 1;
       }
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  .wscn-http404{
+    flex-direction: column;
   }
 }
 </style>

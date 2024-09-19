@@ -1,5 +1,7 @@
 <template>
-  <span></span>
+  <main>
+    <span style="padding: 0 20px;">此功能未开放！</span>
+  </main>
 </template>
 
 <script>

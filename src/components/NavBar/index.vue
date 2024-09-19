@@ -29,14 +29,14 @@ export default {
       default: () => [
         { name: '首页', link: '/home' },
         { name: '医院概括', link: '/overview' },
-        { name: '医院动态', link: 'trends' },
+        { name: '医院动态', link: '/trends' },
         { name: '党建文化', link: 'culture' },
         { name: '院务公开', link: 'publicity' },
         { name: '科室介绍', link: 'depIntroduction' },
         { name: '专家介绍', link: 'experts' },
         { name: '教学科研', link: 'teaching' },
         { name: '人才招聘', link: '/jobs' },
-        { name: 'OA办公', link: 'oa' }
+        { name: 'OA办公', link: '/oa' }
       ],
       type: Array
     }
@@ -63,7 +63,8 @@ export default {
       this.$router.push(url)
     },
     show () {
-      if (this.width && this.width <= 768) {
+      window.addEventListener('resize', this.resize)
+      if (this.width <= 768) {
         this.$refs.list.$el.style.display = 'none'
         this.open = false
       }
