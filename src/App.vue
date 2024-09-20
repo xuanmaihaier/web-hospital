@@ -3,10 +3,8 @@
     <!-- 头部公共导航栏 -->
     <NavBar />
     <!-- 所有主体内容区域显示 -->
-    <breadcrumbComponent :key="$route.fullPath" v-if="$route.meta.name!='home'" />
-    <keep-alive>
-      <router-view :key="$route.fullPath" />
-    </keep-alive>
+    <breadcrumbComponent :key="Date.now()" v-if="$route.meta.name!='home'" />
+    <router-view :key="$route.fullPath" />
     <!-- 公共页脚 -->
     <FooterNav />
     <!-- <Loading /> -->

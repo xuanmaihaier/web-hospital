@@ -5,13 +5,7 @@
       <!-- 底部导航栏 -->
       <el-row type="flex" justify="center" align="middle">
         <div v-for="(item, index) in footer_list" :key="index">
-          <span
-            class="footer_bar"
-            type="flex"
-            justify="space-around"
-            align="middle"
-            @click="footerNavList(index)"
-          >
+          <span class="footer_bar" type="flex" justify="space-around" align="middle" @click="footerNavList(index)">
             <!-- 底部列表 -->
             <a href="javascript:;">{{ item }}</a>
           </span>
@@ -22,12 +16,7 @@
     <div class="footerMsg chating">
       <el-row style="width: 1080px; margin: 0 auto">
         <el-col :span="6" class="footMsg_left">
-          <img
-            src="@/assets/image/logo.png"
-            width="300px"
-            height="155px"
-            alt=""
-          >
+          <img src="@/assets/image/logo.png" width="300px" height="155px" alt="">
         </el-col>
         <el-col :span="8" class="footMsg_left address">
           <div class="content">
@@ -49,34 +38,19 @@
         <el-col :span="10" class="footMsg_right">
           <div class="chat">
             <div>
-              <img
-                src="@/assets/image/chat.png"
-                width="110px"
-                height="110px"
-                alt=""
-              >
+              <img src="@/assets/image/chat.png" width="110px" height="110px" alt="">
             </div>
             医院官网
           </div>
           <div class="chat">
             <div>
-              <img
-                src="@/assets/image/chat.png"
-                width="110px"
-                height="110px"
-                alt=""
-              >
+              <img src="@/assets/image/chat.png" width="110px" height="110px" alt="">
             </div>
             微信公众号
           </div>
           <div class="chat">
             <div>
-              <img
-                src="@/assets/image/chat.png"
-                width="110px"
-                height="110px"
-                alt=""
-              >
+              <img src="@/assets/image/chat.png" width="110px" height="110px" alt="">
             </div>
             微信服务号
           </div>
@@ -87,25 +61,19 @@
       <span>Copyright © 2019-2024 Stride.fun 版权所有 </span>
       <span>苏ICP备2021007111号</span>
       <span>
-        <a
-          target="_blank"
-          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010859"
-          style="
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010859" style="
             display: inline-block;
             text-decoration: none;
             height: 20px;
             line-height: 20px;
-          "
-        ><img src="@/assets/image/beian.png" style="float: left">
-          <p
-            style="
+          "><img src="@/assets/image/beian.png" style="float: left">
+          <p style="
               float: left;
               height: 20px;
               line-height: 20px;
               margin: 0px 0px 0px 5px;
               color: #939393;
-            "
-          >
+            ">
             苏公网安备 32011402010859号
           </p>
         </a>
@@ -116,21 +84,31 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       footer_list: ['关于我们', '联系我们', '院长信箱', '人才招聘'],
       followRoutes: [
         // 改动 正确的
-        '/about',
-        '/advisory',
-        '/partner',
-        '/terms'
+        '/overview/introduction',
+        'https://blog.stride.fun',
+        '/open/mails',
+        '/jobs'
       ]
     }
   },
   methods: {
-    footerNavList(val) {
-      this.$router.push(this.followRoutes[val])
+    footerNavList (val) {
+      let url = this.followRoutes[val]
+      let flag = this.isExternalLink(url)
+      if (flag) {
+        window.open(url)
+      } else {
+        this.$router.push(url)
+      }
+    },
+    isExternalLink (url) {
+      // 正则表达式检查是否以 http 或 https 开头
+      return /^(http|https):\/\//.test(url);
     }
   }
 }
@@ -238,8 +216,8 @@ $mainColor: #007399;
       justify-content: center;
       margin-bottom: 6px;
     }
-    &:last-child{
-        margin-right: 0;
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
@@ -254,48 +232,49 @@ $mainColor: #007399;
   background-color: #338fad;
 }
 
-.Copyright{
+.Copyright {
   font-size: 14px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  span{
+  span {
     padding-bottom: 12px;
   }
 }
-.address{
+.address {
   padding-top: 18px;
 }
-@media screen and (max-width: 1098px){
-  .footer{
-    padding-top:0 
+@media screen and (max-width: 1098px) {
+  .footer {
+    padding-top: 0;
   }
-  .footerNav{
+  .footerNav {
     display: none;
   }
-  .chating{
+  .chating {
     margin-top: 0;
   }
-  .footerMsg{
-    >div{
-      width: 100%!important;
+  .footerMsg {
+    > div {
+      width: 100% !important;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .footMsg_left ,.footMsg_right{
-      width: 100%!important;
+    .footMsg_left,
+    .footMsg_right {
+      width: 100% !important;
     }
     .footMsg_left::after {
       display: none;
     }
-    .chat{
+    .chat {
       margin-right: 10px;
-      >div{
+      > div {
         width: 100px;
         height: 100px;
-        >img{
+        > img {
           width: 90px;
           height: 90px;
         }

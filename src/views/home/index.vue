@@ -19,24 +19,24 @@
           </el-carousel>
         </el-col>
         <el-col :span="8">
-          <Box title='医院新闻' :list="docNewsList" url="/home" />
+          <Box title='医院新闻' :list="docNewsList" link="/trends/news" />
         </el-col>
         <el-col :span="8">
-          <Box title='通知公告' :list="msgsList" url="/home" />
+          <Box title='通知公告' :list="msgsList" link="/trends/notice" />
         </el-col>
         <el-col :span="8">
-          <Box title='护理园地' :list="areaList" url="/home" />
+          <Box title='护理园地' :list="areaList" link="/trends/nurse" />
         </el-col>
         <el-col :span="8">
-          <Box title='医保政策' :list="docList" url="/home" />
+          <Box title='医保政策' :list="docList" link="/trends/insurance" />
         </el-col>
         <el-col :span="8">
-          <Box title='快速通道' :showMore="false" type="column" :list="passList" url="/home" />
+          <Box title='快速通道' :showMore="false" type="column" :list="passList"/>
         </el-col>
       </el-row>
       <el-row class="rows" style="margin-top:32px">
         <el-col :span="24">
-          <Box title='科室介绍' :list="cludeList" type="list" url="/home" />
+          <Box title='科室介绍' :list="cludeList" type="list" link="/depIntroduction/introduce" />
         </el-col>
       </el-row>
       <el-row class="rows" style="margin:32px 0">
@@ -152,7 +152,7 @@ export default {
         }, {
           content: '院长信箱>>',
           image: require('../../assets/image//img-td-yz.png.png'),
-          Link: ''
+          Link: '/open/mails'
         },
       ],
       cludeList: [

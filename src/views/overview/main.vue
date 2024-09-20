@@ -15,9 +15,7 @@
         </el-menu>
       </div>
       <div class="content">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
       </div>
     </div>
   </main>

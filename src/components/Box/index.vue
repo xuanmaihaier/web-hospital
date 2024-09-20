@@ -7,11 +7,11 @@
       <div v-if="showMore" class="more" @click="toLink">更多>></div>
     </div>
     <ul :class="`contents ${type}`">
-      <li v-if="type=='default'" class="contents-item default" v-for="(item,index) in list" :key="index">
+      <li v-if="type=='default'" class="contents-item default" v-for="(item,index) in list" :key="index" @click="toList(item)">
         <span class="contents-item-text" :title="item.content">{{item.content}}</span>
         <span v-if="item.date" class="date">{{item.date}}</span>
       </li>
-      <li v-if="type=='column'" class="contents-item column" v-for="(item,index) in list" :key="index">
+      <li v-if="type=='column'" class="contents-item column" v-for="(item,index) in list" :key="index" @click="toListColmn(item)">
         <span :style="{backgroundImage:'url('+item.image+')'}" class="contents-item-text" :title="item.content">{{item.content}}</span>
       </li>
       <li v-if="type=='list'" class="contents-item list" v-for="(item,index) in list" :key="index">
@@ -55,8 +55,15 @@ export default {
   },
   methods: {
     toLink () {
-      this.$route.push(`${this.link}`);
+      this.$router.push(`${this.link}`);
     },
+    toList(item){
+      this.$router.push(`${this.link}/details/${item.date?item.date:'09-20'}/${item.content}`);
+    },
+    toListColmn(item){
+      this.$router.push(`${item.Link}`);
+
+    }
   },
 };
 </script>
@@ -94,6 +101,7 @@ $mainColor: #007399;
       line-height: 54px;
       font-size: 14px;
       font-weight: 400;
+      cursor: pointer;
     }
     &.column,
     &.mini,

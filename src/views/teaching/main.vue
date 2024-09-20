@@ -3,32 +3,17 @@
     <div class="overview-body">
       <div class="box">
         <el-menu :router="true" :default-active="$route.meta.pPath?$route.meta.pPath:$route.path" class="el-menu-vertical-demo">
-          <el-menu-item index="/culture/news">
-            <span slot="title">党建动态</span>
+          <el-menu-item index="/teaching/library">
+            <span slot="title">数字图书馆</span>
           </el-menu-item>
-          <el-menu-item index="/culture/clean">
-            <span slot="title">党风廉政</span>
+          <el-menu-item index="/teaching/study">
+            <span slot="title">教学科研</span>
           </el-menu-item>
-          <el-menu-item index="/culture/education">
-            <span slot="title">文化建设</span>
+          <el-menu-item index="/teaching/health">
+            <span slot="title">健康保健</span>
           </el-menu-item>
-          <el-menu-item index="/culture/workers">
-            <span slot="title">职工园地</span>
-          </el-menu-item>
-          <el-menu-item index="/culture/video">
-            <span slot="title">影音视窗</span>
-          </el-menu-item>
-          <el-menu-item index="/culture/link">
-            <span slot="title">友情链接</span>
-          </el-menu-item>
-          <el-menu-item index="/culture/school">
-            <span slot="title">网上党校</span>
-          </el-menu-item>
-          <el-menu-item index="/culture/thinking">
-            <span slot="title">患者心声</span>
-          </el-menu-item>
-          <el-menu-item index="/culture/study">
-            <span slot="title">《准则》和《条例》学习专栏</span>
+          <el-menu-item index="/teaching/science">
+            <span slot="title">学术会讯</span>
           </el-menu-item>
         </el-menu>
       </div>
