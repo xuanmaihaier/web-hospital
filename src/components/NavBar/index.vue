@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="nav">
-      <div class="banner">
+      <div class="banner" @click="$router.push('/home')">
         <img class="logo" src="@/assets/image/logo.svg" alt="">
       </div>
       <div v-if="$route.meta.name !== 'search'" class="head-search">
@@ -30,7 +30,7 @@ export default {
         { name: '首页', link: '/home' },
         { name: '医院概括', link: '/overview' },
         { name: '医院动态', link: '/trends' },
-        { name: '党建文化', link: 'culture' },
+        { name: '党建文化', link: '/culture' },
         { name: '院务公开', link: 'publicity' },
         { name: '科室介绍', link: 'depIntroduction' },
         { name: '专家介绍', link: 'experts' },
@@ -46,14 +46,13 @@ export default {
       name: '',
       open: false,
       url: '/home',
-      width:''
     }
   },
   mounted () {
     window.addEventListener('resize', this.resize)
-    setTimeout(() => {
-      this.url = "/" + this.$route.matched[0].meta.name
-    }, 0);
+  },
+  updated() {
+    this.url = "/" + this.$route.matched[0].meta.name
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.resize)
@@ -63,8 +62,7 @@ export default {
       this.$router.push(url)
     },
     show () {
-      window.addEventListener('resize', this.resize)
-      if (this.width <= 768) {
+      if (window.innerWidth <= 768) {
         this.$refs.list.$el.style.display = 'none'
         this.open = false
       }
@@ -78,7 +76,6 @@ export default {
       }
     },
     resize () {
-      this.width = window.innerWidth
       if (window.innerWidth > 768) {
         this.$refs.list.$el.style.display = 'flex'
         this.open = false

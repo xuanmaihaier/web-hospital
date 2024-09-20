@@ -31,13 +31,12 @@ export default {
           title: '首页'
         }
       }
-      console.log(this.breadcrumbdatalist);
       this.breadcrumbdatalistInit = [data, ...this.breadcrumbdatalist]
     }, 0);
   },
   methods: {
     goTo (pathObj) {
-      return { path: pathObj.path, params: this.$route.params }
+      return { name: pathObj.name, params: this.$route.params }
     }
   }
 }
@@ -56,6 +55,7 @@ $mainColor: #007399;
 
   .el-breadcrumb {
     line-height: 40px;
+    min-height: 40px;
   }
 }
 ::v-deep .el-breadcrumb__inner.is-link{
