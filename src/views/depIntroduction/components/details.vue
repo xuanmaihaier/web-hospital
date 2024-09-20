@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <div class="header">
-      <p class="title">{{$route.params.name}}</p>
+      <p class="title">{{ $route.params.name }}</p>
     </div>
     <div class="content">
       <p>科室等级：南京市医学重点专科</p>
@@ -15,22 +15,22 @@
     </div>
     <span class="content">
       &nbsp;&nbsp;&nbsp;&nbsp;科室概况：外科床位25张，外科营养治疗病房15张，医生8人，其中高级职称2人，博士2人，形成以肠功能障碍系列治疗为特色、覆盖胃肠外科全部诊疗项目的学科发展方向，为来自全国各地的复杂疑难胃肠疾病患者服务，近年来患者转诊自全国25个省区。
-      <br />
+      <br>
       &nbsp;&nbsp;&nbsp;&nbsp;开展项目：科室设有成熟的外科营养支持团队，为短肠综合征、肠瘘、小肠动力障碍性疾病患者提供外科和营养的综合治疗，为从机械性到动力性的全部肠梗阻亚型患者提供先进诊疗，包括放射性肠损伤、炎症性肠病、粘连性肠梗阻、癌性肠梗阻、假性肠梗阻、肠动力障碍等。科室展开胃窦十二指肠空肠动力评估，对小肠动力障碍性疾病的诊治居国内领先水平。科室现为“中国放射性肠损伤诊治中心”。
-      <br />
+      <br>
       &nbsp;&nbsp;&nbsp;&nbsp;胃肠外科同时常规开展各种胃肠肿瘤的腹腔镜微创手术，目前科室配备有3D腹腔镜、荧光腹腔镜等先进设备，科室为四附院胃肠肿瘤多学科诊疗团队的召集科室，坚持完全标准化流程为肿瘤患者提供多学科诊疗服务。科室同时发挥营养治疗专长，全面推行加速康复外科，强调围手术期全面监测和管理，目前为“全国加速康复外科全程营养示范病房”。
     </span>
     <div class="sub-header">
       <p class="title">专家介绍</p>
     </div>
     <el-row class="content" type="flex" justify="space-between" :gutter="5">
-      <el-col style="padding-bottom:10px" :xs="{span:24}" :sm="{span:8}"  v-for="(item,index) in doc" :key="index">
-        <el-card class="card" :body-style="{ padding: '0px' }">
-          <img src='https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg' height="265px" class="image">
+      <el-col v-for="(item,index) in doc" :key="index" style="padding-bottom:10px" :xs="{span:24}" :sm="{span:8}">
+        <el-card class="card" :body-style="{ padding: '0px' }" @click.native="goLink(item)">
+          <img src="https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg" height="265px" class="image">
           <div style="padding: 14px;" class="bottom">
-            <p class="name">{{item.name}}</p>
-            <p class="title">{{item.title}}</p>
-            <p class="sub">{{item.sub}}</p>
+            <p class="name">{{ item.name }}</p>
+            <p class="title">{{ item.title }}</p>
+            <p class="sub">{{ item.sub }}</p>
           </div>
         </el-card>
       </el-col>
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       doc: [
         {
@@ -61,9 +61,14 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
     this.$route.meta.title = this.$route.params.name
   },
+  methods: {
+    goLink(item) {
+      this.$router.push(`/experts/普外科/details/${item.name}`)
+    }
+  }
 }
 </script>
 

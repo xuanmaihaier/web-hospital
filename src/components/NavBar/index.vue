@@ -188,7 +188,7 @@ $mainColor: #007399;
   .banner {
     width: 246px;
     height: 70px;
-    margin-left: 18px;
+    // margin-left: 18px;
   }
   .banner .logo {
     width: 246px;
