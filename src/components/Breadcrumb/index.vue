@@ -27,8 +27,10 @@ export default {
     setTimeout(() => {
       const data = {
         path: '/home',
+        name:'home',
         meta: {
-          title: '首页'
+          title: '首页',
+          name:'home'
         }
       }
       this.breadcrumbdatalistInit = [data, ...this.breadcrumbdatalist]
