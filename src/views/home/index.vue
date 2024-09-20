@@ -11,7 +11,7 @@
       <el-row class="rows">
         <el-col :span="8">
           <el-carousel height="319px" class="rows-carousel" :interval="5000" arrow="always">
-            <el-carousel-item v-for="item in imgs" :key="item">
+            <el-carousel-item v-for="item in imgs_sec" :key="item">
               <div>
                 <img :src="item" alt="">
               </div>
@@ -31,7 +31,7 @@
           <Box title='医保政策' :list="docList" link="/trends/insurance" />
         </el-col>
         <el-col :span="8">
-          <Box title='快速通道' :showMore="false" type="column" :list="passList"/>
+          <Box title='快速通道' :showMore="false" type="column" :list="passList" />
         </el-col>
       </el-row>
       <el-row class="rows" style="margin-top:32px">
@@ -56,7 +56,13 @@ export default {
       height: '360px',
       imgs: [
         require('../../assets/image/img_banner1.jpg'),
-        require('../../assets/image/img_banner2.jpg')
+        require('../../assets/image/img_banner4.jpg'),
+        require('../../assets/image/img_banner2.jpg'),
+      ],
+      imgs_sec: [
+        require('../../assets/image/img_banner5.jpg'),
+        require('../../assets/image/img_banner6.jpg'),
+        require('../../assets/image/img_banner7.jpg'),
       ],
       docNewsList: [
         {
@@ -191,10 +197,10 @@ export default {
       LinkList: [
         {
           content: '江苏省卫生健康委员会',
-          link:'https://stride.fun'
+          link: 'https://stride.fun'
         }, {
           content: '南京医科大学',
-          link:'https://blog.stride.fun'
+          link: 'https://blog.stride.fun'
         }
       ]
     }
@@ -207,7 +213,7 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         this.height = this.$refs.imgItems[0].offsetHeight + 'px'
-      }, 350)
+      }, 150)
     })
   },
   beforeDestroy () {
@@ -231,7 +237,7 @@ export default {
     width: 100%;
     height: auto;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 400px;
     object-fit: cover;
   }
   .content {
@@ -291,11 +297,11 @@ export default {
 @media screen and (max-width: 768px) {
   .rows {
     flex-direction: column;
-    >div{
+    > div {
       width: 100%;
     }
   }
-  .home .content{
+  .home .content {
     margin-top: 2px;
   }
 }

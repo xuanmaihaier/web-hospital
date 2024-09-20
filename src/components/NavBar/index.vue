@@ -2,7 +2,7 @@
   <nav>
     <div class="nav">
       <div class="banner" @click="$router.push('/home')">
-        <img class="logo" src="@/assets/image/logo.svg" alt="">
+        <img class="logo" src="@/assets/image/logos.png" alt="">
       </div>
       <div v-if="$route.meta.name !== 'search'" class="head-search">
         <el-input v-model="name" placeholder="请输入内容">
